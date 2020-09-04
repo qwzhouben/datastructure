@@ -6,6 +6,9 @@ import java.util.Arrays;
  * @DESC:选择排序：结论
  * 1. 选择排序一共有数组大小-1轮排序
  * 2. 每一轮排序，又是一个循环
+ * 思想：
+ *  第一次从arr[0]~arr[n-1]中选取最小值，与arr[0]交换， 第二次从arr[1]~arr[n-1]中选最小值，
+ *  与arr[1]交换，与此类推，得到一个按排序码从小到大的有序序列
  * @author: zhouben
  * @date: 2020/9/4 0004 11:31
  */
@@ -20,7 +23,7 @@ public class SelectSort {
 
         long start = System.currentTimeMillis();
         sort(arr);
-        System.out.println((System.currentTimeMillis() - start) / 1000);
+        System.out.println((System.currentTimeMillis() - start));
 
     /*    int[] arr = {101, 24, 119, 1};
         System.out.println("排序前~");

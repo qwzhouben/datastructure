@@ -13,29 +13,18 @@ import java.util.Arrays;
 public class BubbleSort {
 
     public static void main(String[] args) {
-        int arr[] = {3, 9, -1, 10, -2};
+        int[] arr = new int[80000];
+        for (int i = 0; i < 80000; i++) {
+            arr[i] = (int) (Math.random() * 8000000); //生成[0-8000000)
+        }
+        long start = System.currentTimeMillis();
+        sort(arr);
+        System.out.println((System.currentTimeMillis() - start) / 1000);
 
         /**
          * 冒泡排序时间复杂度O(n^2)
          */
-        int temp_;
-        boolean flag = false;
-        for (int i = 0; i < arr.length - 1; i++) {
-            for (int j = 0; j < arr.length - 1 - i; j++) {
-                if (arr[j] > arr[j + 1]) {
-                    flag = true;
-                    temp_ = arr[j];
-                    arr[j] = arr[j + 1];
-                    arr[j + 1] = temp_;
-                }
-            }
-            if (!flag) {
-                break;
-            } else {
-                flag = false;
-            }
-            System.out.println("第" + (i + 1) + "次排序的结果：" + Arrays.toString(arr));
-        }
+
 
 
   /*      //第一次排序
@@ -79,5 +68,26 @@ public class BubbleSort {
         }
         System.out.println("第四次排序的结果：" + Arrays.toString(arr));
     }*/
+    }
+
+    private static void sort(int[] arr) {
+        int temp_;
+        boolean flag = false;
+        for (int i = 0; i < arr.length - 1; i++) {
+            for (int j = 0; j < arr.length - 1 - i; j++) {
+                if (arr[j] > arr[j + 1]) {
+                    flag = true;
+                    temp_ = arr[j];
+                    arr[j] = arr[j + 1];
+                    arr[j + 1] = temp_;
+                }
+            }
+            if (!flag) {
+                break;
+            } else {
+                flag = false;
+            }
+            //System.out.println("第" + (i + 1) + "次排序的结果：" + Arrays.toString(arr));
+        }
     }
 }

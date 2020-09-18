@@ -17,10 +17,10 @@ public class BinarySortTreeDemo {
         System.out.println("二叉排序树 中序遍历");
         sortTree.infixList();
         System.out.println();
-      //  sortTree.delNode(2);
-      //  sortTree.delNode(1);
-      //  sortTree.delNode(12);
-      //  sortTree.delNode(1);
+        //  sortTree.delNode(2);
+        //  sortTree.delNode(1);
+        //  sortTree.delNode(12);
+        //  sortTree.delNode(1);
         sortTree.delNode(7);
         sortTree.infixList();
     }
@@ -73,9 +73,8 @@ class BinarySortTree {
     }
 
     /**
-     *
-     * @param node  以node为根节点， 向右子树查找最小的节点
-     * @return      返回最小节点的值
+     * @param node 以node为根节点， 向右子树查找最小的节点
+     * @return 返回最小节点的值
      */
     public int delRightTreeMin(Node node) {
         Node temp = node;
@@ -95,20 +94,21 @@ class BinarySortTree {
      * 2、找到targetNode的父节点 parent
      * 3、确定targetNode是parent的左子节点还是右子节点
      * 4、根据前面的情况来对应删除
-     *
+     * <p>
      * 第二种情况：删除只有一颗子树的节点
      * 1、需要先去找到要删除的节点 targetNode
      * 2、找到targetNode的父节点 parent
      * 3、确定targetNode的子节点是左子节点还是右子节点
      * 4、targetNode是parent的左子节点还是右子节点
      * 5、如果targetNode有左子节点
-     *
+     * <p>
      * 第三种情况：删除有两棵子树的节点
      * 1、需要先去找到要删除的节点 targetNode
      * 2、找到targetNode的父节点 parent
      * 3、从targetNode的右子树找到最小的节点
      * 4、用一个临时变量，将最小节点的值保存 temp = 11
      * 5、删除该最小节点 并 targetNode.value = temp
+     *
      * @param value
      * @return
      */
@@ -141,23 +141,35 @@ class BinarySortTree {
                 targetNode.value = minValue;
             } else {
                 //3. 如果当前节点只有一个子树
-                if (parent.left.value == targetNode.value) { //如果targetNode是parent的左子节点
-                    if (targetNode.left != null) {  //如果targetNode的左子树不为空
-                        parent.left = targetNode.left;
+                if (targetNode.left != null) {//如果是左子树不为空
+                    if (parent != null) {
+                        if (parent.left.value == targetNode.value) { //如果targetNode是parent的左子节点
+                            //如果targetNode的左子树不为空
+                            parent.left = targetNode.left;
+                        } else {
+                            parent.right = targetNode.left;
+
+                        }
                     } else {
-                        parent.left = targetNode.right;
+                        root = targetNode.left;
                     }
-                } else if (parent.right.value == targetNode.value) {    //如果targetNode是parent的右子节点
-                    if (targetNode.left != null) {  //如果targetNode的左子树不为空
-                        parent.right = targetNode.left;
+                } else {
+                    if (parent != null) {
+                        if (parent.right.value == targetNode.value) { //如果targetNode是parent的左子节点
+                            //如果targetNode的左子树不为空
+                            parent.left = targetNode.left;
+                        } else {
+                            parent.left = targetNode.right;
+                        }
                     } else {
-                        parent.right = targetNode.right;
-                    }
+                        root = targetNode.right;
                 }
             }
-
         }
+
     }
+
+}
 
     /**
      * 中序遍历
